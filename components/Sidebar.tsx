@@ -10,83 +10,17 @@ import {
   Bell,
   Settings,
   Sparkles,
-  FileText,
-  BarChart3,
-  Zap,
-  Globe
+  FileText // Add this
 } from "lucide-react";
 
-interface NavItem {
-  icon: React.ElementType;
-  label: string;
-  href: string;
-  badge?: number;
-  subItems?: { label: string; href: string }[];
-}
-
-const navItems: NavItem[] = [
-  {
-    icon: LayoutDashboard,
-    label: "Dashboard",
-    href: "/dashboard",
-  },
-  {
-    icon: Sparkles,
-    label: "AI Agent",
-    href: "/dashboard/ai",
-    subItems: [
-      { label: "Briefings", href: "/dashboard/ai/briefings" },
-      { label: "Smart Replies", href: "/dashboard/ai/smart-replies" },
-      { label: "Email Drafts", href: "/dashboard/ai/email-drafts" },
-    ],
-  },
-  {
-    icon: Calendar,
-    label: "Calendar",
-    href: "/dashboard/calendar",
-    subItems: [
-      { label: "Schedule", href: "/dashboard/calendar" },
-      { label: "Auto-Schedule", href: "/dashboard/calendar/schedule" },
-      { label: "Meeting Prep", href: "/dashboard/calendar/prep" },
-      { label: "Analytics", href: "/dashboard/calendar/analytics" },
-    ],
-  },
-  {
-    icon: Mail,
-    label: "Gmail",
-    href: "/dashboard/gmail",
-  },
-  {
-    icon: MessageSquare,
-    label: "WhatsApp",
-    href: "/dashboard/whatsapp",
-  },
-  {
-    icon: Bell,
-    label: "Notifications",
-    href: "/dashboard/notifications",
-    badge: 3,
-  },
-  {
-    icon: BarChart3,
-    label: "Analytics",
-    href: "/dashboard/analytics",
-  },
-  {
-    icon: Globe,
-    label: "Platforms",
-    href: "/dashboard/platforms",
-  },
-  {
-    icon: Settings,
-    label: "Settings",
-    href: "/dashboard/settings",
-  },
-  {
-    icon: FileText,
-    label: "Email Templates",
-    href: "/dashboard/email-templates",
-  },
+const navItems = [
+  { icon: LayoutDashboard, label: "Dashboard", href: "/dashboard" },
+  { icon: FileText, label: "Briefings", href: "/briefing" }, // Add this
+  { icon: Mail, label: "Gmail", href: "/dashboard/gmail" },
+  { icon: MessageSquare, label: "WhatsApp", href: "/dashboard/whatsapp" },
+  { icon: Calendar, label: "Calendar", href: "/dashboard/calendar" },
+  { icon: Bell, label: "Alerts", href: "/dashboard/alerts" },
+  { icon: Settings, label: "Settings", href: "/dashboard/settings" },
 ];
 
 export default function Sidebar({ isOpen = true }) {

@@ -3,11 +3,17 @@
 import { useUser } from "@/hooks/useUser";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
+<<<<<<< HEAD
 import { Loader2, Sparkles, Mail, MessageSquare, Calendar, Bell, TrendingUp, Clock, Users, Zap } from "lucide-react";
 import Link from "next/link";
 import ConnectGmail from "@/components/ConnectGmail";
 import ConnectWhatsApp from "@/components/ConnectWhatsApp";
 import { AuthDebug } from "@/components/AuthDebug";
+=======
+import { Loader2 } from "lucide-react";
+import ConnectGmail from "@/components/ConnectGmail";
+import ConnectWhatsApp from "@/components/ConnectWhatsApp";
+>>>>>>> feature/final-polish
 
 export default function DashboardPage() {
   const { user, credits, isLoaded, isSignedIn } = useUser();
@@ -15,6 +21,10 @@ export default function DashboardPage() {
   const alerts = useQuery(api.alerts.getAlerts, { unreadOnly: true });
   const todayBriefing = useQuery(api.briefings.getTodayBriefing);
 
+<<<<<<< HEAD
+=======
+  // Show loading state while Clerk is initializing
+>>>>>>> feature/final-polish
   if (!isLoaded) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
@@ -23,6 +33,10 @@ export default function DashboardPage() {
     );
   }
 
+<<<<<<< HEAD
+=======
+  // If not signed in, redirect to sign in
+>>>>>>> feature/final-polish
   if (!isSignedIn) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
@@ -33,6 +47,10 @@ export default function DashboardPage() {
     );
   }
 
+<<<<<<< HEAD
+=======
+  // Check if data is still loading
+>>>>>>> feature/final-polish
   if (platforms === undefined || alerts === undefined || todayBriefing === undefined) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
@@ -48,6 +66,7 @@ export default function DashboardPage() {
 
   return (
     <div>
+<<<<<<< HEAD
       <div className="mb-6">
         <AuthDebug />
       </div>
@@ -61,11 +80,19 @@ export default function DashboardPage() {
         </div>
         <div className="flex items-center gap-2 bg-blue-50 px-4 py-2 rounded-lg">
           <Zap className="w-4 h-4 text-blue-600" />
+=======
+      <div className="flex items-center justify-between mb-6">
+        <h1 className="text-3xl font-bold text-gray-900">
+          Welcome back, {user?.name || "User"}! 👋
+        </h1>
+        <div className="flex items-center gap-2 bg-blue-50 px-4 py-2 rounded-lg">
+>>>>>>> feature/final-polish
           <span className="text-sm text-blue-600">Credits:</span>
           <span className="font-bold text-blue-700">{credits}</span>
         </div>
       </div>
 
+<<<<<<< HEAD
       {/* Quick Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <QuickStat
@@ -100,10 +127,14 @@ export default function DashboardPage() {
 
       {/* Platform Connections */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+=======
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+>>>>>>> feature/final-polish
         <ConnectGmail isConnected={isGmailConnected} />
         <ConnectWhatsApp isConnected={isWhatsAppConnected} />
       </div>
 
+<<<<<<< HEAD
       {/* AI Features Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
         <FeatureCard
@@ -154,6 +185,48 @@ export default function DashboardPage() {
                 {todayBriefing.items.length} action items
               </span>
             )}
+=======
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <StatCard 
+          title="Platforms Connected" 
+          value={connectedPlatforms} 
+          icon="🔗"
+          subtitle="Active integrations"
+        />
+        <StatCard 
+          title="Unread Alerts" 
+          value={unreadAlerts} 
+          icon="🔔"
+          subtitle="Require attention"
+        />
+        <StatCard 
+          title="Today's Briefing" 
+          value={todayBriefing ? "Ready" : "Pending"} 
+          icon="📋"
+          subtitle={todayBriefing ? "Click to view" : "Generating..."}
+        />
+        <StatCard 
+          title="AI Credits" 
+          value={credits} 
+          icon="⚡"
+          subtitle="Available for use"
+        />
+      </div>
+
+      {todayBriefing && (
+        <div className="mt-8 bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+          <h2 className="text-xl font-semibold text-gray-800 mb-4">
+            📊 Today's Briefing
+          </h2>
+          <p className="text-gray-600">{todayBriefing.summary}</p>
+          <div className="mt-4 flex items-center justify-between">
+            <span className="text-sm text-gray-500">
+              Generated: {new Date(todayBriefing.createdAt).toLocaleTimeString()}
+            </span>
+            <button className="text-blue-600 hover:text-blue-700 text-sm font-medium">
+              View Full Briefing →
+            </button>
+>>>>>>> feature/final-polish
           </div>
         </div>
       )}
@@ -161,7 +234,16 @@ export default function DashboardPage() {
   );
 }
 
+<<<<<<< HEAD
 function QuickStat({ icon, title, value, subtitle, link }: any) {
+=======
+function StatCard({ title, value, icon, subtitle }: { 
+  title: string; 
+  value: string | number; 
+  icon: string;
+  subtitle: string;
+}) {
+>>>>>>> feature/final-polish
   return (
     <Link href={link} className="bg-white rounded-xl shadow-sm border border-gray-100 p-4 hover:shadow-md transition-all">
       <div className="flex items-center justify-between">
@@ -169,9 +251,12 @@ function QuickStat({ icon, title, value, subtitle, link }: any) {
           <p className="text-sm text-gray-500">{title}</p>
           <p className="text-2xl font-bold text-gray-900 mt-1">{value}</p>
           <p className="text-xs text-gray-400 mt-1">{subtitle}</p>
+<<<<<<< HEAD
         </div>
         <div className="p-2 bg-gray-50 rounded-lg">
           {icon}
+=======
+>>>>>>> feature/final-polish
         </div>
       </div>
     </Link>

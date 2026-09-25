@@ -3,12 +3,7 @@ import { mutation, query } from "./_generated/server";
 
 export const connectPlatform = mutation({
   args: {
-    platform: v.union(
-      v.literal("gmail"),
-      v.literal("whatsapp"),
-      v.literal("calendar"),
-      v.literal("slack")
-    ),
+    platform: v.string(),
     accountId: v.string(),
     accountEmail: v.optional(v.string()),
     accountName: v.optional(v.string()),
@@ -35,6 +30,7 @@ export const connectPlatform = mutation({
         )
         .first();
 
+<<<<<<< HEAD
       if (!user) {
         console.error(`[connectPlatform] User not found for token: ${identity.tokenIdentifier}`);
         throw new Error("User not found - Please sign in again");
@@ -73,6 +69,20 @@ export const connectPlatform = mutation({
       const platformId = await ctx.db.insert("connectedPlatforms", {
         userId: user._id,
         platform: args.platform,
+=======
+    // Check if platform already exists
+    const existingPlatforms = await ctx.db
+      .query("connectedPlatforms")
+      .withIndex("by_user", (q) => q.eq("userId", user._id))
+      .collect();
+
+    const existing = existingPlatforms.find(
+      p => p.platform === args.platform
+    );
+
+    if (existing) {
+      await ctx.db.patch(existing._id, {
+>>>>>>> feature/final-polish
         accountId: args.accountId,
         accountEmail: args.accountEmail || args.accountId,
         accountName: args.accountName || args.accountId,
@@ -90,6 +100,7 @@ export const connectPlatform = mutation({
       console.error("[connectPlatform] Error:", error);
       throw error;
     }
+<<<<<<< HEAD
   },
 });
 
@@ -137,6 +148,56 @@ export const getPlatforms = query({
 });
 
 // Add a helper mutation to disconnect platforms
+=======
+
+    const platformId = await ctx.db.insert("connectedPlatforms", {
+      userId: user._id,
+      platform: args.platform,
+      accountId: args.accountId,
+      accountEmail: args.accountEmail,
+      accountName: args.accountName,
+      accessToken: args.accessToken,
+      refreshToken: args.refreshToken,
+      isConnected: true,
+      lastSync: Date.now(),
+      createdAt: Date.now(),
+      updatedAt: Date.now(),
+    });
+
+    return platformId;
+  },
+});
+
+// FIXED: Return empty array instead of throwing error
+export const getPlatforms = query({
+  args: {},
+  handler: async (ctx) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) {
+      return []; // Return empty array instead of throwing
+    }
+
+    const user = await ctx.db
+      .query("users")
+      .withIndex("by_token", (q) => 
+        q.eq("tokenIdentifier", identity.tokenIdentifier)
+      )
+      .first();
+
+    if (!user) {
+      return []; // Return empty array instead of throwing
+    }
+
+    const platforms = await ctx.db
+      .query("connectedPlatforms")
+      .withIndex("by_user", (q) => q.eq("userId", user._id))
+      .collect();
+
+    return platforms;
+  },
+});
+
+>>>>>>> feature/final-polish
 export const disconnectPlatform = mutation({
   args: {
     platform: v.string(),
@@ -226,5 +287,21 @@ export const isPlatformConnected = query({
       console.error("[isPlatformConnected] Error:", error);
       return false;
     }
+<<<<<<< HEAD
+=======
+
+    const platforms = await ctx.db
+      .query("connectedPlatforms")
+      .withIndex("by_user", (q) => q.eq("userId", user._id))
+      .collect();
+
+    const platform = platforms.find(p => p.platform === args.platform);
+
+    if (!platform) {
+      throw new Error("Platform not found");
+    }
+
+    await ctx.db.delete(platform._id);
+>>>>>>> feature/final-polish
   },
 });

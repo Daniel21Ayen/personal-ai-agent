@@ -8,6 +8,7 @@ import type { User } from "@/types";
 
 export function useUser() {
   const { user, isLoaded: clerkLoaded, isSignedIn } = useClerkUser();
+<<<<<<< HEAD
   const currentUser = useQuery(api.auth.getCurrentUser) as User | null | undefined;
   const credits = useQuery(api.users.getCredits) as number | undefined;
   
@@ -39,6 +40,18 @@ export function useUser() {
           console.error("[useUser] Failed to store user:", error);
           hasStoredUser.current = false;
         });
+=======
+  const storeUser = useMutation(api.auth.storeUser);
+  const currentUser = useQuery(api.auth.getCurrentUser);
+  const credits = useQuery(api.users.getCredits);
+
+  useEffect(() => {
+    // Only store user if signed in and clerk is loaded
+    if (isSignedIn && user && clerkLoaded) {
+      storeUser().catch((error) => {
+        console.error("Failed to store user:", error);
+      });
+>>>>>>> feature/final-polish
     }
   }, [isSignedIn, user, clerkLoaded]);
 

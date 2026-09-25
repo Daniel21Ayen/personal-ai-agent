@@ -1,6 +1,9 @@
 "use client";
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> feature/final-polish
 import { useState } from "react";
 import { useUser } from "@/hooks/useUser";
 import { useQuery } from "convex/react";

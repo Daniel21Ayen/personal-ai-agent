@@ -9,6 +9,7 @@
  */
 
 import type * as alerts from "../alerts.js";
+<<<<<<< HEAD
 import type * as analytics from "../analytics.js";
 import type * as auth from "../auth.js";
 import type * as briefings from "../briefings.js";
@@ -19,6 +20,12 @@ import type * as followups from "../followups.js";
 import type * as notifications from "../notifications.js";
 import type * as platforms from "../platforms.js";
 import type * as priorityInbox from "../priorityInbox.js";
+=======
+import type * as auth from "../auth.js";
+import type * as briefings from "../briefings.js";
+import type * as emailDrafts from "../emailDrafts.js";
+import type * as platforms from "../platforms.js";
+>>>>>>> feature/final-polish
 import type * as test from "../test.js";
 import type * as users from "../users.js";
 
@@ -30,6 +37,7 @@ import type {
 
 declare const fullApi: ApiFromModules<{
   alerts: typeof alerts;
+<<<<<<< HEAD
   analytics: typeof analytics;
   auth: typeof auth;
   briefings: typeof briefings;
@@ -40,6 +48,12 @@ declare const fullApi: ApiFromModules<{
   notifications: typeof notifications;
   platforms: typeof platforms;
   priorityInbox: typeof priorityInbox;
+=======
+  auth: typeof auth;
+  briefings: typeof briefings;
+  emailDrafts: typeof emailDrafts;
+  platforms: typeof platforms;
+>>>>>>> feature/final-polish
   test: typeof test;
   users: typeof users;
 }>;

@@ -29,6 +29,10 @@ export default function SettingsPage() {
       <h1 className="text-3xl font-bold text-gray-900 mb-6">Settings</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+<<<<<<< HEAD
+=======
+        {/* Profile Settings */}
+>>>>>>> feature/final-polish
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
           <div className="flex items-center gap-3 mb-4">
             <User className="w-5 h-5 text-blue-600" />
@@ -50,6 +54,10 @@ export default function SettingsPage() {
           </div>
         </div>
 
+<<<<<<< HEAD
+=======
+        {/* Preferences */}
+>>>>>>> feature/final-polish
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
           <div className="flex items-center gap-3 mb-4">
             <Palette className="w-5 h-5 text-blue-600" />
@@ -77,6 +85,10 @@ export default function SettingsPage() {
           </div>
         </div>
 
+<<<<<<< HEAD
+=======
+        {/* Security */}
+>>>>>>> feature/final-polish
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
           <div className="flex items-center gap-3 mb-4">
             <Shield className="w-5 h-5 text-blue-600" />
@@ -92,6 +104,10 @@ export default function SettingsPage() {
           </div>
         </div>
 
+<<<<<<< HEAD
+=======
+        {/* Language & Region */}
+>>>>>>> feature/final-polish
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
           <div className="flex items-center gap-3 mb-4">
             <Globe className="w-5 h-5 text-blue-600" />

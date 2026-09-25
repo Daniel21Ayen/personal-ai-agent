@@ -4,6 +4,7 @@ import { ConvexProvider, ConvexReactClient } from "convex/react";
 import { ReactNode, useEffect, useState } from "react";
 import { useAuth } from "@clerk/nextjs";
 
+<<<<<<< HEAD
 let convex: ConvexReactClient | null = null;
 
 function getConvexClient() {
@@ -17,6 +18,15 @@ function getConvexClient() {
   }
   return convex;
 }
+=======
+<<<<<<< HEAD
+// Create a single Convex client instance
+=======
+>>>>>>> feature/phase-4-ai-agent
+const convex = new ConvexReactClient(
+  process.env.NEXT_PUBLIC_CONVEX_URL!
+);
+>>>>>>> feature/final-polish
 
 export default function ConvexClientProvider({
   children,
