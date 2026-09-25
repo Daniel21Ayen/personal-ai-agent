@@ -1,6 +1,7 @@
 "use client";
 
 import { ConvexProvider, ConvexReactClient } from "convex/react";
+<<<<<<< HEAD
 import { ReactNode, useEffect, useState } from "react";
 import { useAuth } from "@clerk/nextjs";
 
@@ -27,12 +28,20 @@ const convex = new ConvexReactClient(
   process.env.NEXT_PUBLIC_CONVEX_URL!
 );
 >>>>>>> feature/final-polish
+=======
+import { ReactNode } from "react";
+
+const convex = new ConvexReactClient(
+  process.env.NEXT_PUBLIC_CONVEX_URL!
+);
+>>>>>>> origin/feature/phase-2-database
 
 export default function ConvexClientProvider({
   children,
 }: {
   children: ReactNode;
 }) {
+<<<<<<< HEAD
   const { getToken, isLoaded, isSignedIn } = useAuth();
   const [mounted, setMounted] = useState(false);
   const client = getConvexClient();
@@ -74,4 +83,7 @@ export default function ConvexClientProvider({
 
   // Only render children wrapped in ConvexProvider
   return <ConvexProvider client={client}>{children}</ConvexProvider>;
+=======
+  return <ConvexProvider client={convex}>{children}</ConvexProvider>;
+>>>>>>> origin/feature/phase-2-database
 }

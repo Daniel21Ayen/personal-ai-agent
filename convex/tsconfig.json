@@ -1,5 +1,6 @@
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "./_generated",
@@ -14,6 +15,8 @@
   "include": ["./**/*.ts", "./**/*.tsx"],
   "exclude": ["node_modules", "./_generated"]
 =======
+=======
+>>>>>>> origin/feature/phase-2-database
   /* This TypeScript project config describes the environment that
    * Convex functions run in and is used to typecheck them.
    * You can modify it, but some settings are required to use Convex.
@@ -37,5 +40,8 @@
   },
   "include": ["./**/*"],
   "exclude": ["./_generated"]
+<<<<<<< HEAD
 >>>>>>> feature/final-polish
+=======
+>>>>>>> origin/feature/phase-2-database
 }

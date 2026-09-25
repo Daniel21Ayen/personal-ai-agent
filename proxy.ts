@@ -5,9 +5,13 @@ const isProtectedRoute = createRouteMatcher([
   "/briefing(.*)",
   "/settings(.*)",
   "/onboarding(.*)",
+<<<<<<< HEAD
   "/api/gmail(.*)",
   "/api/auth(.*)",
 ]); 
+=======
+]);
+>>>>>>> origin/feature/phase-2-database
 
 export default clerkMiddleware(async (auth, req) => {
   if (isProtectedRoute(req)) {

@@ -1,6 +1,7 @@
 "use client";
 
 import { useUser as useClerkUser } from "@clerk/nextjs";
+<<<<<<< HEAD
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { useEffect, useRef } from "react";
@@ -41,6 +42,14 @@ export function useUser() {
           hasStoredUser.current = false;
         });
 =======
+=======
+import { useMutation, useQuery } from "convex/react";
+import { api } from "@/convex/_generated/api";
+import { useEffect } from "react";
+
+export function useUser() {
+  const { user, isLoaded: clerkLoaded, isSignedIn } = useClerkUser();
+>>>>>>> origin/feature/phase-2-database
   const storeUser = useMutation(api.auth.storeUser);
   const currentUser = useQuery(api.auth.getCurrentUser);
   const credits = useQuery(api.users.getCredits);
@@ -51,12 +60,20 @@ export function useUser() {
       storeUser().catch((error) => {
         console.error("Failed to store user:", error);
       });
+<<<<<<< HEAD
 >>>>>>> feature/final-polish
     }
   }, [isSignedIn, user, clerkLoaded]);
 
   return {
     user: currentUser || null,
+=======
+    }
+  }, [isSignedIn, user, clerkLoaded, storeUser]);
+
+  return {
+    user: currentUser,
+>>>>>>> origin/feature/phase-2-database
     credits: credits ?? 0,
     isLoaded: clerkLoaded,
     isSignedIn,

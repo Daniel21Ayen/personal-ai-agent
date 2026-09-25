@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 // convex/auth.ts
 =======
 >>>>>>> feature/final-polish
@@ -72,12 +73,46 @@ export const storeUser = mutation({
       console.error("[storeUser] Error:", error);
       throw error;
 =======
+=======
+import { v } from "convex/values";
+import { mutation, query } from "./_generated/server";
+
+// Get current user - FIXED: Handle unauthenticated case
+export const getCurrentUser = query({
+  args: {},
+>>>>>>> origin/feature/phase-2-database
   handler: async (ctx) => {
     const identity = await ctx.auth.getUserIdentity();
     if (!identity) {
       return null;
     }
+<<<<<<< HEAD
 
+=======
+    
+    const user = await ctx.db
+      .query("users")
+      .withIndex("by_token", (q) => 
+        q.eq("tokenIdentifier", identity.tokenIdentifier)
+      )
+      .first();
+    
+    return user || null;
+  },
+});
+
+// Store user when they sign up - FIXED: Better error handling
+export const storeUser = mutation({
+  args: {},
+  handler: async (ctx) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) {
+      // Return null instead of throwing error
+      return null;
+    }
+
+    // Check if user already exists
+>>>>>>> origin/feature/phase-2-database
     const existingUser = await ctx.db
       .query("users")
       .withIndex("by_token", (q) => 
@@ -89,16 +124,28 @@ export const storeUser = mutation({
       return existingUser._id;
     }
 
+<<<<<<< HEAD
+=======
+    // Create new user
+>>>>>>> origin/feature/phase-2-database
     const userId = await ctx.db.insert("users", {
       tokenIdentifier: identity.tokenIdentifier,
       email: identity.email ?? "",
       name: identity.name ?? "User",
       imageUrl: typeof identity.imageUrl === "string" ? identity.imageUrl : undefined,
+<<<<<<< HEAD
       credits: 10,
+=======
+      credits: 10, // Free credits for new users
+>>>>>>> origin/feature/phase-2-database
       createdAt: Date.now(),
       updatedAt: Date.now(),
     });
 
+<<<<<<< HEAD
+=======
+    // Create default settings
+>>>>>>> origin/feature/phase-2-database
     await ctx.db.insert("userSettings", {
       userId: userId,
       preferences: {
@@ -113,6 +160,7 @@ export const storeUser = mutation({
 
     return userId;
   },
+<<<<<<< HEAD
 });
 
 export const getCurrentUser = query({
@@ -160,4 +208,6 @@ export const getCurrentUser = query({
   },
 =======
 >>>>>>> feature/final-polish
+=======
+>>>>>>> origin/feature/phase-2-database
 });

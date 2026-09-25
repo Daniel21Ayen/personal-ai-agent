@@ -32,7 +32,16 @@ export default defineSchema({
   // Connected platforms
   connectedPlatforms: defineTable({
     userId: v.id("users"),
+<<<<<<< HEAD
     platform: v.string(),
+=======
+    platform: v.union(
+      v.literal("gmail"),
+      v.literal("whatsapp"),
+      v.literal("calendar"),
+      v.literal("slack")
+    ),
+>>>>>>> origin/feature/phase-2-database
     accountId: v.string(),
     accountEmail: v.optional(v.string()),
     accountName: v.optional(v.string()),
@@ -43,24 +52,47 @@ export default defineSchema({
     createdAt: v.number(),
     updatedAt: v.number(),
   })
+<<<<<<< HEAD
     .index("by_user", ["userId"])
     .index("by_user_platform", ["userId", "platform"])
     .index("by_user", ["userId"]),
 
   // Briefings
+=======
+    .index("by_user_platform", ["userId", "platform"])
+    .index("by_platform", ["platform"]),
+
+  // Daily briefings
+>>>>>>> origin/feature/phase-2-database
   briefings: defineTable({
     userId: v.id("users"),
     date: v.string(),
     title: v.string(),
     summary: v.string(),
     details: v.string(),
+<<<<<<< HEAD
     type: v.string(),
+=======
+    type: v.union(
+      v.literal("daily"),
+      v.literal("weekly"),
+      v.literal("custom")
+    ),
+>>>>>>> origin/feature/phase-2-database
     items: v.array(
       v.object({
         platform: v.string(),
         title: v.string(),
         description: v.string(),
+<<<<<<< HEAD
         priority: v.string(),
+=======
+        priority: v.union(
+          v.literal("high"),
+          v.literal("medium"),
+          v.literal("low")
+        ),
+>>>>>>> origin/feature/phase-2-database
         link: v.optional(v.string()),
       })
     ),
@@ -76,8 +108,22 @@ export default defineSchema({
     userId: v.id("users"),
     title: v.string(),
     message: v.string(),
+<<<<<<< HEAD
     type: v.string(),
     priority: v.string(),
+=======
+    type: v.union(
+      v.literal("email"),
+      v.literal("whatsapp"),
+      v.literal("system"),
+      v.literal("calendar")
+    ),
+    priority: v.union(
+      v.literal("high"),
+      v.literal("medium"),
+      v.literal("low")
+    ),
+>>>>>>> origin/feature/phase-2-database
     isRead: v.boolean(),
     isDismissed: v.boolean(),
     data: v.optional(v.any()),
@@ -87,6 +133,7 @@ export default defineSchema({
     .index("by_user_read", ["userId", "isRead"])
     .index("by_user", ["userId"]),
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   notifications: defineTable({
     userId: v.id("users"),
@@ -175,21 +222,46 @@ export default defineSchema({
 =======
   // Email drafts
 >>>>>>> feature/final-polish
+=======
+  // AI conversations
+  conversations: defineTable({
+    userId: v.id("users"),
+    title: v.string(),
+    messages: v.array(
+      v.object({
+        role: v.union(v.literal("user"), v.literal("assistant"), v.literal("system")),
+        content: v.string(),
+        timestamp: v.number(),
+      })
+    ),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  })
+    .index("by_user", ["userId"]),
+
+  // Email drafts
+>>>>>>> origin/feature/phase-2-database
   emailDrafts: defineTable({
     userId: v.id("users"),
     platform: v.string(),
     threadId: v.optional(v.string()),
     to: v.array(v.string()),
+<<<<<<< HEAD
     cc: v.optional(v.array(v.string())),
     bcc: v.optional(v.array(v.string())),
     subject: v.string(),
     body: v.string(),
 <<<<<<< HEAD
+=======
+    subject: v.string(),
+    body: v.string(),
+>>>>>>> origin/feature/phase-2-database
     status: v.union(
       v.literal("draft"),
       v.literal("sent"),
       v.literal("failed")
     ),
+<<<<<<< HEAD
     priority: v.optional(v.union(
       v.literal("high"),
       v.literal("medium"),
@@ -208,11 +280,14 @@ export default defineSchema({
 =======
     status: v.string(),
 >>>>>>> feature/final-polish
+=======
+>>>>>>> origin/feature/phase-2-database
     sentAt: v.optional(v.number()),
     createdAt: v.number(),
     updatedAt: v.number(),
   })
     .index("by_user_status", ["userId", "status"])
+<<<<<<< HEAD
 <<<<<<< HEAD
     .index("by_user_priority", ["userId", "priority"])
     .index("by_user", ["userId"]),
@@ -268,3 +343,7 @@ export default defineSchema({
     .index("by_user", ["userId"]),
 });
 >>>>>>> feature/final-polish
+=======
+    .index("by_user", ["userId"]),
+});
+>>>>>>> origin/feature/phase-2-database

@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/feature/phase-2-database
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
 
@@ -32,6 +35,7 @@ export const updateUser = mutation({
   },
 });
 
+<<<<<<< HEAD
 // Get user credits - Make sure this is exported
 export const getCredits = query({
   args: {},
@@ -43,6 +47,15 @@ export const getCredits = query({
   handler: async (ctx) => {
     const identity = await ctx.auth.getUserIdentity();
     if (!identity) {
+=======
+// Get user credits - FIXED: Handle case when user is not authenticated
+export const getCredits = query({
+  args: {},
+  handler: async (ctx) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) {
+      // Return 0 or null instead of throwing error
+>>>>>>> origin/feature/phase-2-database
       return 0;
     }
 
@@ -56,6 +69,9 @@ export const getCredits = query({
     return user?.credits ?? 0;
   },
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/feature/phase-2-database
 });
 
 // Update user credits
@@ -85,6 +101,9 @@ export const updateCredits = mutation({
       updatedAt: Date.now(),
     });
   },
+<<<<<<< HEAD
 =======
 >>>>>>> feature/phase-4-ai-agent
+=======
+>>>>>>> origin/feature/phase-2-database
 });

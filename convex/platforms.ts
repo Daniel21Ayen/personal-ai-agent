@@ -1,9 +1,21 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
 
+<<<<<<< HEAD
 export const connectPlatform = mutation({
   args: {
     platform: v.string(),
+=======
+// Connect a platform
+export const connectPlatform = mutation({
+  args: {
+    platform: v.union(
+      v.literal("gmail"),
+      v.literal("whatsapp"),
+      v.literal("calendar"),
+      v.literal("slack")
+    ),
+>>>>>>> origin/feature/phase-2-database
     accountId: v.string(),
     accountEmail: v.optional(v.string()),
     accountName: v.optional(v.string()),
@@ -11,6 +23,7 @@ export const connectPlatform = mutation({
     refreshToken: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
+<<<<<<< HEAD
     console.log(`[connectPlatform] Starting for platform: ${args.platform}`);
     
     try {
@@ -150,6 +163,48 @@ export const getPlatforms = query({
 // Add a helper mutation to disconnect platforms
 =======
 
+=======
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) {
+      throw new Error("Unauthorized");
+    }
+
+    const user = await ctx.db
+      .query("users")
+      .withIndex("by_token", (q) => 
+        q.eq("tokenIdentifier", identity.tokenIdentifier)
+      )
+      .first();
+
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    // Check if platform already exists
+    const existing = await ctx.db
+      .query("connectedPlatforms")
+      .withIndex("by_user_platform", (q) => 
+        q.eq("userId", user._id).eq("platform", args.platform)
+      )
+      .first();
+
+    if (existing) {
+      // Update existing
+      await ctx.db.patch(existing._id, {
+        accountId: args.accountId,
+        accountEmail: args.accountEmail,
+        accountName: args.accountName,
+        accessToken: args.accessToken,
+        refreshToken: args.refreshToken,
+        isConnected: true,
+        lastSync: Date.now(),
+        updatedAt: Date.now(),
+      });
+      return existing._id;
+    }
+
+    // Create new
+>>>>>>> origin/feature/phase-2-database
     const platformId = await ctx.db.insert("connectedPlatforms", {
       userId: user._id,
       platform: args.platform,
@@ -168,13 +223,21 @@ export const getPlatforms = query({
   },
 });
 
+<<<<<<< HEAD
 // FIXED: Return empty array instead of throwing error
+=======
+// Get all connected platforms for user
+>>>>>>> origin/feature/phase-2-database
 export const getPlatforms = query({
   args: {},
   handler: async (ctx) => {
     const identity = await ctx.auth.getUserIdentity();
     if (!identity) {
+<<<<<<< HEAD
       return []; // Return empty array instead of throwing
+=======
+      throw new Error("Unauthorized");
+>>>>>>> origin/feature/phase-2-database
     }
 
     const user = await ctx.db
@@ -185,18 +248,29 @@ export const getPlatforms = query({
       .first();
 
     if (!user) {
+<<<<<<< HEAD
       return []; // Return empty array instead of throwing
     }
 
     const platforms = await ctx.db
       .query("connectedPlatforms")
       .withIndex("by_user", (q) => q.eq("userId", user._id))
+=======
+      throw new Error("User not found");
+    }
+
+    // FIXED: Use the correct index name
+    const platforms = await ctx.db
+      .query("connectedPlatforms")
+      .withIndex("by_user_platform", (q) => q.eq("userId", user._id))
+>>>>>>> origin/feature/phase-2-database
       .collect();
 
     return platforms;
   },
 });
 
+<<<<<<< HEAD
 >>>>>>> feature/final-polish
 export const disconnectPlatform = mutation({
   args: {
@@ -296,12 +370,50 @@ export const isPlatformConnected = query({
       .collect();
 
     const platform = platforms.find(p => p.platform === args.platform);
+=======
+// Disconnect platform
+export const disconnectPlatform = mutation({
+  args: {
+    platform: v.union(
+      v.literal("gmail"),
+      v.literal("whatsapp"),
+      v.literal("calendar"),
+      v.literal("slack")
+    ),
+  },
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) {
+      throw new Error("Unauthorized");
+    }
+
+    const user = await ctx.db
+      .query("users")
+      .withIndex("by_token", (q) => 
+        q.eq("tokenIdentifier", identity.tokenIdentifier)
+      )
+      .first();
+
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    const platform = await ctx.db
+      .query("connectedPlatforms")
+      .withIndex("by_user_platform", (q) => 
+        q.eq("userId", user._id).eq("platform", args.platform)
+      )
+      .first();
+>>>>>>> origin/feature/phase-2-database
 
     if (!platform) {
       throw new Error("Platform not found");
     }
 
     await ctx.db.delete(platform._id);
+<<<<<<< HEAD
 >>>>>>> feature/final-polish
+=======
+>>>>>>> origin/feature/phase-2-database
   },
 });

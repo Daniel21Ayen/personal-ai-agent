@@ -4,9 +4,12 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import ConvexClientProvider from "@/components/ConvexClientProvider";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { SocketProvider } from "@/context/SocketContext";
 =======
 >>>>>>> feature/final-polish
+=======
+>>>>>>> origin/feature/phase-2-database
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,12 +29,16 @@ export default function RootLayout({
         <body className={inter.className}>
           <ConvexClientProvider>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <SocketProvider>
               {children}
             </SocketProvider>
 =======
             {children}
 >>>>>>> feature/final-polish
+=======
+            {children}
+>>>>>>> origin/feature/phase-2-database
           </ConvexClientProvider>
         </body>
       </html>

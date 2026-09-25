@@ -10,6 +10,7 @@
 
 import type * as alerts from "../alerts.js";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import type * as analytics from "../analytics.js";
 import type * as auth from "../auth.js";
 import type * as briefings from "../briefings.js";
@@ -27,6 +28,11 @@ import type * as emailDrafts from "../emailDrafts.js";
 import type * as platforms from "../platforms.js";
 >>>>>>> feature/final-polish
 import type * as test from "../test.js";
+=======
+import type * as auth from "../auth.js";
+import type * as briefings from "../briefings.js";
+import type * as platforms from "../platforms.js";
+>>>>>>> origin/feature/phase-2-database
 import type * as users from "../users.js";
 
 import type {
@@ -37,6 +43,7 @@ import type {
 
 declare const fullApi: ApiFromModules<{
   alerts: typeof alerts;
+<<<<<<< HEAD
 <<<<<<< HEAD
   analytics: typeof analytics;
   auth: typeof auth;
@@ -55,6 +62,11 @@ declare const fullApi: ApiFromModules<{
   platforms: typeof platforms;
 >>>>>>> feature/final-polish
   test: typeof test;
+=======
+  auth: typeof auth;
+  briefings: typeof briefings;
+  platforms: typeof platforms;
+>>>>>>> origin/feature/phase-2-database
   users: typeof users;
 }>;
 

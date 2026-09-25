@@ -4,6 +4,7 @@ import { useUser } from "@/hooks/useUser";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { Loader2, Sparkles, Mail, MessageSquare, Calendar, Bell, TrendingUp, Clock, Users, Zap } from "lucide-react";
 import Link from "next/link";
 import ConnectGmail from "@/components/ConnectGmail";
@@ -14,6 +15,11 @@ import { Loader2 } from "lucide-react";
 import ConnectGmail from "@/components/ConnectGmail";
 import ConnectWhatsApp from "@/components/ConnectWhatsApp";
 >>>>>>> feature/final-polish
+=======
+import { Loader2 } from "lucide-react";
+import ConnectGmail from "@/components/ConnectGmail";
+import ConnectWhatsApp from "@/components/ConnectWhatsApp";
+>>>>>>> origin/feature/phase-2-database
 
 export default function DashboardPage() {
   const { user, credits, isLoaded, isSignedIn } = useUser();
@@ -22,9 +28,13 @@ export default function DashboardPage() {
   const todayBriefing = useQuery(api.briefings.getTodayBriefing);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   // Show loading state while Clerk is initializing
 >>>>>>> feature/final-polish
+=======
+  // Show loading state while Clerk is initializing
+>>>>>>> origin/feature/phase-2-database
   if (!isLoaded) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
@@ -34,9 +44,13 @@ export default function DashboardPage() {
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   // If not signed in, redirect to sign in
 >>>>>>> feature/final-polish
+=======
+  // If not signed in, show a message
+>>>>>>> origin/feature/phase-2-database
   if (!isSignedIn) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
@@ -47,6 +61,7 @@ export default function DashboardPage() {
     );
   }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
   // Check if data is still loading
@@ -59,6 +74,8 @@ export default function DashboardPage() {
     );
   }
 
+=======
+>>>>>>> origin/feature/phase-2-database
   const isGmailConnected = platforms?.some(p => p.platform === "gmail" && p.isConnected) || false;
   const isWhatsAppConnected = platforms?.some(p => p.platform === "whatsapp" && p.isConnected) || false;
   const connectedPlatforms = platforms?.filter(p => p.isConnected).length || 0;
@@ -66,6 +83,7 @@ export default function DashboardPage() {
 
   return (
     <div>
+<<<<<<< HEAD
 <<<<<<< HEAD
       <div className="mb-6">
         <AuthDebug />
@@ -81,17 +99,23 @@ export default function DashboardPage() {
         <div className="flex items-center gap-2 bg-blue-50 px-4 py-2 rounded-lg">
           <Zap className="w-4 h-4 text-blue-600" />
 =======
+=======
+>>>>>>> origin/feature/phase-2-database
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-3xl font-bold text-gray-900">
           Welcome back, {user?.name || "User"}! 👋
         </h1>
         <div className="flex items-center gap-2 bg-blue-50 px-4 py-2 rounded-lg">
+<<<<<<< HEAD
 >>>>>>> feature/final-polish
+=======
+>>>>>>> origin/feature/phase-2-database
           <span className="text-sm text-blue-600">Credits:</span>
           <span className="font-bold text-blue-700">{credits}</span>
         </div>
       </div>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
       {/* Quick Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
@@ -130,10 +154,14 @@ export default function DashboardPage() {
 =======
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
 >>>>>>> feature/final-polish
+=======
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+>>>>>>> origin/feature/phase-2-database
         <ConnectGmail isConnected={isGmailConnected} />
         <ConnectWhatsApp isConnected={isWhatsAppConnected} />
       </div>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
       {/* AI Features Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
@@ -186,6 +214,8 @@ export default function DashboardPage() {
               </span>
             )}
 =======
+=======
+>>>>>>> origin/feature/phase-2-database
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <StatCard 
           title="Platforms Connected" 
@@ -226,7 +256,10 @@ export default function DashboardPage() {
             <button className="text-blue-600 hover:text-blue-700 text-sm font-medium">
               View Full Briefing →
             </button>
+<<<<<<< HEAD
 >>>>>>> feature/final-polish
+=======
+>>>>>>> origin/feature/phase-2-database
           </div>
         </div>
       )}
@@ -235,15 +268,21 @@ export default function DashboardPage() {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 function QuickStat({ icon, title, value, subtitle, link }: any) {
 =======
+=======
+>>>>>>> origin/feature/phase-2-database
 function StatCard({ title, value, icon, subtitle }: { 
   title: string; 
   value: string | number; 
   icon: string;
   subtitle: string;
 }) {
+<<<<<<< HEAD
 >>>>>>> feature/final-polish
+=======
+>>>>>>> origin/feature/phase-2-database
   return (
     <Link href={link} className="bg-white rounded-xl shadow-sm border border-gray-100 p-4 hover:shadow-md transition-all">
       <div className="flex items-center justify-between">
@@ -252,11 +291,14 @@ function StatCard({ title, value, icon, subtitle }: {
           <p className="text-2xl font-bold text-gray-900 mt-1">{value}</p>
           <p className="text-xs text-gray-400 mt-1">{subtitle}</p>
 <<<<<<< HEAD
+<<<<<<< HEAD
         </div>
         <div className="p-2 bg-gray-50 rounded-lg">
           {icon}
 =======
 >>>>>>> feature/final-polish
+=======
+>>>>>>> origin/feature/phase-2-database
         </div>
       </div>
     </Link>
